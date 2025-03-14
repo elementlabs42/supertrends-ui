@@ -11,11 +11,18 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
     - uses: actions/checkout@v4
+    - name: Install pnpm
+      uses: pnpm/action-setup@v4
     - name: Use Node.js
       uses: actions/setup-node@v4
       with:
         node-version: ${{ matrix.node }}
-    - run: pnpm install --frozen-lockfile
-    - run: pnpm lint
-    - run: pnpm build
-#    - run: pnpm test
+        cache: 'pnpm'
+    - name: Install dependencies
+      run: pnpm install --frozen-lockfile
+    - name: Lint check
+      run: pnpm lint
+    - name: Build
+      run: pnpm build
+#    - name: Test
+#      run: pnpm test
