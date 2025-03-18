@@ -1,3 +1,4 @@
+import { Fonts } from '@/constants/themes'
 import { createGlobalStyle } from 'styled-components'
 
 export const GlobalStyle = createGlobalStyle`
@@ -10,6 +11,7 @@ export const GlobalStyle = createGlobalStyle`
     width: 100%;
     height: 100%;
     font-size: 16px;
+    font-family: ${Fonts.Body};
     color: ${(props) => props.theme.Text};
     background-color: ${(props) => props.theme.Background};
   }

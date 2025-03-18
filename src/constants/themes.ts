@@ -1,3 +1,9 @@
+export const Fonts = {
+  Header: 'Source Sans Pro, Arial, Helvetica, sans-serif',
+  Monospace: '"Roboto Mono", monospace',
+  Body: 'Open Sans',
+}
+
 export const Colors = {
   Black: '#000',
   BlackTransparent: 'rgba(0, 0, 0, 0.6)',

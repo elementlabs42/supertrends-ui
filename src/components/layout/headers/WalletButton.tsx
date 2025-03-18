@@ -1,4 +1,4 @@
-import { Borders, Colors, FontWeights } from '@/constants/themes'
+import { Borders, Colors, Fonts, FontWeights } from '@/constants/themes'
 import { ReactNode } from 'react'
 import styled from 'styled-components'
 import { Dot } from '@/components/icons'
@@ -40,6 +40,7 @@ const Button = styled.span.attrs<{ $gray?: boolean }>((props) => ({
   color: ${({ theme }) => theme.ButtonText};
   text-decoration: none;
   font-size: 12px;
+  font-family: ${Fonts.Monospace};
   font-weight: ${FontWeights.Semibold};
   background-color: ${({ theme, $gray }) => ($gray ? Colors.Gray : theme.ButtonBackground)};
   border-radius: ${Borders.ButtonRadius};
