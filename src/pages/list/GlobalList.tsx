@@ -2,9 +2,17 @@ import { TokenTable } from '@/components/controls'
 import { Page } from '@/components/layout'
 import { Token } from '@/models'
 import styled from 'styled-components'
+import { useToken } from '@/providers/token/provider'
+import { useEffect } from 'react'
 
 export default function GloablList() {
+  const { setTokens } = useToken()
   const tokenList = createDummyTokens()
+
+  useEffect(() => {
+    setTokens(tokenList)
+  }, [setTokens])
+
   return (
     <Page>
       <main>
