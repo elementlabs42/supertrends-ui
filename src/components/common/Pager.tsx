@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import { Borders } from '@/constants/themes'
-import { RoundedElement, RoundedIcon } from './RoundedElements'
+import { RoundedElement, RoundedIcon } from '../controls/RoundedElements'
 import { ChevronLeft, ChevronRight } from '../icons'
 
 interface Props {

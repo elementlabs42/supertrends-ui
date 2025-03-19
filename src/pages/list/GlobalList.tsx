@@ -1,4 +1,4 @@
-import { PaginationPanel, TokenTable } from '@/components/controls'
+import { TokenTable } from '@/components/controls'
 import { Page } from '@/components/layout'
 import { Token } from '@/models'
 import styled from 'styled-components'
@@ -9,9 +9,7 @@ export default function GloablList() {
     <Page>
       <main>
         <Title>Global List</Title>
-        <PaginationPanel dataSize={tokenList.length}>
-          <TokenTable data={tokenList} />
-        </PaginationPanel>
+        <TokenTable data={tokenList} />
       </main>
     </Page>
   )

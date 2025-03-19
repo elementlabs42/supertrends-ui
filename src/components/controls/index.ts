@@ -1,4 +1,4 @@
 export * from './Tooltip'
-export * from './Pager'
-export * from './PaginationPanel'
+export * from '../common/Pager'
+export * from '../common/PaginationPanel'
 export * from './TokenTable'

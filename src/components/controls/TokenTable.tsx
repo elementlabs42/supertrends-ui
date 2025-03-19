@@ -1,6 +1,6 @@
 import styled from 'styled-components'
-import { Loading } from '../common'
-import { usePagination } from '@/providers/pagination'
+import { Loading, PaginationPanel } from '../common'
+import { PaginationProvider, usePagination } from '@/providers/pagination'
 import { Token } from '@/models'
 
 interface Props {
@@ -9,44 +9,54 @@ interface Props {
 }
 
 export function TokenTable({ data, className }: Props) {
+  return (
+    <PaginationProvider>
+      <TokenTableInternal data={data} className={className} />
+    </PaginationProvider>
+  )
+}
+
+function TokenTableInternal({ data, className }: Props) {
   const { perPage, current } = usePagination()
   return data ? (
-    <Container className={className}>
-      <Table>
-        <thead>
-          <TableRow>
-            <th>Token</th>
-            <th>About</th>
-            <th>Price</th>
-            <th>24H</th>
-            <th>Market Cap</th>
-            <th></th>
-          </TableRow>
-        </thead>
-        <tbody>
-          {data.slice(current * perPage, (current + 1) * perPage).map((token) => {
-            const dynamics = token.getCurrentDynamics()
-            return (
-              <TableRow key={token.getAddress()}>
-                <td>{token.getName()}</td>
-                <td>
-                  {token.getTitle()}
-                  {token.getDescription() && (
-                    <span>
-                      <br /> {token.getDescription()}
-                    </span>
-                  )}
-                </td>
-                <td>{dynamics ? String(dynamics.price) : 'N/A'}</td>
-                <td>N/A</td>
-                <td>{dynamics ? String(dynamics.cap) : 'N/A'}</td>
-                <td>Buy Sell</td>
-              </TableRow>
-            )
-          })}
-        </tbody>
-      </Table>
-    </Container>
+    <PaginationPanel dataSize={data.length}>
+      <Container className={className}>
+        <Table>
+          <thead>
+            <TableRow>
+              <th>Token</th>
+              <th>About</th>
+              <th>Price</th>
+              <th>24H</th>
+              <th>Market Cap</th>
+              <th></th>
+            </TableRow>
+          </thead>
+          <tbody>
+            {data.slice(current * perPage, (current + 1) * perPage).map((token) => {
+              const dynamics = token.getCurrentDynamics()
+              return (
+                <TableRow key={token.getAddress()}>
+                  <td>{token.getName()}</td>
+                  <td>
+                    {token.getTitle()}
+                    {token.getDescription() && (
+                      <span>
+                        <br /> {token.getDescription()}
+                      </span>
+                    )}
+                  </td>
+                  <td>{dynamics ? String(dynamics.price) : 'N/A'}</td>
+                  <td>N/A</td>
+                  <td>{dynamics ? String(dynamics.cap) : 'N/A'}</td>
+                  <td>Buy Sell</td>
+                </TableRow>
+              )
+            })}
+          </tbody>
+        </Table>
+      </Container>
+    </PaginationPanel>
   ) : (
     <Loading />
   )

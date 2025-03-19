@@ -1,8 +1,8 @@
 import { ReactNode, useEffect } from 'react'
 import styled from 'styled-components'
 import { Pager } from './Pager'
-import { Panel } from '../common'
-import { PaginationProvider, usePagination } from '@/providers/pagination'
+import { Panel } from '.'
+import { usePagination } from '@/providers/pagination'
 
 interface Props {
   children?: ReactNode
@@ -11,16 +11,6 @@ interface Props {
 }
 
 export function PaginationPanel({ children, className, dataSize }: Props) {
-  return (
-    <PaginationProvider>
-      <PaginationPanelInternal dataSize={dataSize} className={className}>
-        {children}
-      </PaginationPanelInternal>
-    </PaginationProvider>
-  )
-}
-
-function PaginationPanelInternal({ children, className, dataSize }: Props) {
   const { total, setTotal, perPage, current, setCurrent } = usePagination()
 
   useEffect(() => {
