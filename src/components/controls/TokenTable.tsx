@@ -1,7 +1,8 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import { Loading, PaginationPanel } from '../common'
 import { PaginationProvider, usePagination } from '@/providers/pagination'
 import { Token } from '@/models'
+import { Borders } from '@/constants/themes'
 
 interface Props {
   data?: Token[]
@@ -24,32 +25,32 @@ function TokenTableInternal({ data, className }: Props) {
         <Table>
           <thead>
             <TableRow>
-              <th>Token</th>
-              <th>About</th>
-              <th>Price</th>
-              <th>24H</th>
-              <th>Market Cap</th>
-              <th></th>
+              <HeaderCell>Token</HeaderCell>
+              <HeaderCell>About</HeaderCell>
+              <HeaderCell>Price</HeaderCell>
+              <HeaderCell>24H</HeaderCell>
+              <HeaderCell>Market Cap</HeaderCell>
+              <HeaderCell></HeaderCell>
             </TableRow>
           </thead>
           <tbody>
             {data.slice(current * perPage, (current + 1) * perPage).map((token) => {
               const dynamics = token.getCurrentDynamics()
               return (
-                <TableRow key={token.getAddress()}>
-                  <td>{token.getName()}</td>
-                  <td>
+                <TableRow key={token.getAddress()} $isSuper={!token.getSuperToken()}>
+                  <DataCell>{token.getName()}</DataCell>
+                  <DataCell>
                     {token.getTitle()}
                     {token.getDescription() && (
                       <span>
                         <br /> {token.getDescription()}
                       </span>
                     )}
-                  </td>
-                  <td>{dynamics ? String(dynamics.price) : 'N/A'}</td>
-                  <td>N/A</td>
-                  <td>{dynamics ? String(dynamics.cap) : 'N/A'}</td>
-                  <td>Buy Sell</td>
+                  </DataCell>
+                  <DataCell>{dynamics ? String(dynamics.price) : 'N/A'}</DataCell>
+                  <DataCell>N/A</DataCell>
+                  <DataCell>{dynamics ? String(dynamics.cap) : 'N/A'}</DataCell>
+                  <DataCell>Buy Sell</DataCell>
                 </TableRow>
               )
             })}
@@ -70,9 +71,32 @@ const Container = styled.div`
 `
 
 const Table = styled.table`
-  border: 1px solid;
+  font-size: 1em;
+  border-radius: ${Borders.PanelRadius};
+  border-collapse: collapse;
+  border-style: hidden;
+  overflow: hidden;
+  box-shadow: 0 0 0 1px ${({ theme }) => theme.TableBorder};
 `
 
-const TableRow = styled.tr`
+const TableRow = styled.tr.attrs<{ $isSuper?: boolean }>((props) => ({
+  $isSuper: props.$isSuper,
+}))`
+  ${(props) => (props.$isSuper ? `background-color: ${props.theme.TableHeaderBackground};` : '')}
   text-align: left;
+`
+
+const TableCellStyle = css`
+  border-top: 1px solid ${({ theme }) => theme.TableBorder};
+  border-bottom: 1px solid ${({ theme }) => theme.TableBorder};
+  padding: 1em;
+`
+
+const DataCell = styled.td`
+  ${TableCellStyle}
+`
+
+const HeaderCell = styled.th`
+  background-color: ${({ theme }) => theme.TableHeaderBackground};
+  ${TableCellStyle}
 `
