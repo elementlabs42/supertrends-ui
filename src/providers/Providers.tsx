@@ -13,7 +13,7 @@ const config = getDefaultConfig({
   appName: 'Supertrends',
   projectId: 'e355babd1f0eb181905a298f13d990fd',
   chains: getWagmiChainsConfig(),
-  ssr: true,
+  ssr: false,
 })
 const queryClient = new QueryClient()
 
