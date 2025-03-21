@@ -94,11 +94,11 @@ const TableRow = styled.tr.attrs<{ $isSuper?: boolean; $clickable?: boolean }>((
 }))`
   ${(props) => (props.$isSuper ? `background-color: ${props.theme.TableHeaderBackground};` : '')}
   text-align: left;
-  cursor: ${props => props.$clickable ? 'pointer' : 'default'};
+  cursor: ${(props) => (props.$clickable ? 'pointer' : 'default')};
   transition: background-color 0.2s ease-out;
 
   &:hover {
-    background-color: ${({ theme, $clickable }) => $clickable ? theme.HoverArea : 'inherit'};
+    background-color: ${({ theme, $clickable }) => ($clickable ? theme.HoverArea : 'inherit')};
   }
 `
 
