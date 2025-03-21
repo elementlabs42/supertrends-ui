@@ -10,7 +10,7 @@ export const GlobalStyle = createGlobalStyle`
     margin: 0;
     width: 100%;
     height: 100%;
-    font-size: 16px;
+    font-size: 14px;
     font-family: ${Fonts.Body};
     color: ${(props) => props.theme.Text};
     background-color: ${(props) => props.theme.Background};

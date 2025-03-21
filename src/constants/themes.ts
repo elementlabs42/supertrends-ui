@@ -15,9 +15,11 @@ export const Colors = {
   Red: '#D92D20',
 
   LightestGray: '#F9FAFB',
+  LighterGray: '#E4E7EC',
   LightGray: '#8D8D8D',
   Gray: '#565656',
   DarkGray: '#3B3B3B',
+  DarkerGray: '#27272A',
   DarkestGray: 'rgba(37, 38, 45, 0.6)',
 
   DarkBlue: '#0C368E',
@@ -58,8 +60,8 @@ export const LightTheme = {
   ModalBackgroundTransparent: Colors.BlackTransparentLess,
   ModalShadow: 'rgba(16, 24, 40, 0.32)',
 
-  AccordionDetailBorder: '#E4E7EC',
-  AccordionDetailBackground: Colors.LightestGray,
+  TableBorder: Colors.LighterGray,
+  TableHeaderBackground: Colors.LightestGray,
 }
 
 export const DarkTheme = {
@@ -97,8 +99,8 @@ export const DarkTheme = {
   ModalBackgroundTransparent: Colors.WhiteTransparentLess,
   ModalShadow: 'rgba(66, 66, 66, 0.32)',
 
-  AccordionDetailBorder: Colors.Gray,
-  AccordionDetailBackground: Colors.DarkestGray,
+  TableBorder: Colors.DarkerGray,
+  TableHeaderBackground: Colors.DarkestGray,
 }
 
 export const FontWeights = {

@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { useConnectModal as useEthereumConnectModal } from '@rainbow-me/rainbowkit'
+import { useConnectModal } from '@rainbow-me/rainbowkit'
 import { useQueryClient } from '@tanstack/react-query'
 
 import { Navigation, WalletButton } from './headers'
@@ -8,7 +8,7 @@ import { useClipboard } from '@/hooks/useClipboard'
 import { useEBtcBalanceOf, useEthAccount } from '@/hooks/ethereum'
 
 export function Header() {
-  const { openConnectModal } = useEthereumConnectModal()
+  const { openConnectModal } = useConnectModal()
   const [ethereumAccount, isUnsupported] = useEthAccount()
   const queryClient = useQueryClient()
   const [eBtcBalance, balanceOfQueryKey] = useEBtcBalanceOf(ethereumAccount)
